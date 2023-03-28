@@ -1,8 +1,13 @@
 import java.util.Scanner;
 
+/*
+Во всех задачах отсутствует проверка на корректный ввод.
+ */
+
 public class HWSem1 {
     public static void main(String[] args) {
-        task1();
+//        task1();
+        task2();
     }
 
     static int inputInt() {
@@ -18,7 +23,21 @@ public class HWSem1 {
          */
         System.out.println("Введите номер треугольного числа: ");
         int numb = inputInt();
-        int t = (numb * (numb + 1)) / 2; // используется тип int так как треугольное число всегда является целым числом.
+        int t = (numb * (numb + 1)) / 2;
         System.out.println("Треугольное число №" + numb + " = " + t);
+    }
+
+    static  void task2(){
+        /*
+        Вычислить n! (произведение чисел от 1 до n)
+         */
+        System.out.println("Введите положительное целое число для рассчёта его факториала: ");
+        int numb = inputInt();
+        int res = 1;
+        while (numb > 1){
+            res *= numb;
+            numb -= 1;
+        }
+        System.out.println("Факториал чиала " + numb + " = " + res);
     }
 }
