@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+import static java.lang.Math.sqrt;
+
 /*
 Во всех задачах отсутствует проверка на корректный ввод.
  */
@@ -7,13 +9,26 @@ import java.util.Scanner;
 public class HWSem1 {
     public static void main(String[] args) {
 //        task1();
-        task2();
+//        task2();
+        task3();
     }
 
     static int inputInt() {
         Scanner scanner = new Scanner(System.in);
         int numb = scanner.nextInt();
         return numb;
+    }
+
+    static boolean isSimple(int numb){
+        if (numb % 2 == 0 || numb % 3 == 0 || numb % 5 == 0){
+            return false;
+        }
+        for (int i = 3; i <=sqrt(numb) ; i++) {
+            if (numb % i == 0){
+                return false;
+            }
+        }
+        return true;
     }
 
     static void task1() {
@@ -39,5 +54,21 @@ public class HWSem1 {
             numb -= 1;
         }
         System.out.println("Факториал чиала " + numb + " = " + res);
+    }
+
+    static void task3(){
+        /*
+        Вывести все простые числа от 1 до 1000 (числа, которые делятся только на 1 и на себя без остатка)
+         */
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("[2, ");
+        for (int i = 3; i <1000 ; i++) {
+            if (isSimple(i)){
+                stringBuilder.append(i + ", ");
+            }
+            }
+        stringBuilder.deleteCharAt(stringBuilder.length()-1); // избавляеся от последнего символа пробела
+        stringBuilder.setCharAt(stringBuilder.length()-1, ']'); // заменяем последнюю ',' на ']'
+        System.out.println(stringBuilder.toString());
     }
 }
