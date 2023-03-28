@@ -71,4 +71,10 @@ public class HWSem1 {
         stringBuilder.setCharAt(stringBuilder.length()-1, ']'); // заменяем последнюю ',' на ']'
         System.out.println(stringBuilder.toString());
     }
+
+    static void task4(){
+        /*
+        Реализовать простой калькулятор (введите первое число, введите второе число, введите требуемую операцию, ответ)
+         */
+    }
 }
