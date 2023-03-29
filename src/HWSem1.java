@@ -18,6 +18,12 @@ public class HWSem1 {
         return numb;
     }
 
+    static double inputDouble() {
+        Scanner scanner = new Scanner(System.in);
+        double numb = scanner.nextDouble();
+        return numb;
+    }
+
     static boolean isSimple(int numb){
         if (numb % 2 == 0 || numb % 3 == 0 || numb % 5 == 0){
             return false;
