@@ -10,7 +10,8 @@ public class HWSem1 {
 //        task1();
 //        task2();
 //        task3();
-        task4();
+//        task4();
+        task5();
     }
 
     static int inputInt() {
@@ -23,6 +24,12 @@ public class HWSem1 {
         Scanner scanner = new Scanner(System.in);
         double numb = scanner.nextDouble();
         return numb;
+    }
+
+    static String inputStr() {
+        Scanner scanner = new Scanner(System.in);
+        String str = scanner.nextLine();
+        return str;
     }
 
     static boolean isSimple(int numb){
@@ -121,4 +128,14 @@ public class HWSem1 {
         System.out.println(stringBuilder);
         }
 
+    static void task5(){
+        /*
+         * Задано уравнение вида q + w = e, q, w, e >= 0. Некоторые цифры могут быть заменены знаком вопроса, например,
+         * 2? + ?5 = 69. Требуется восстановить выражение до верного равенства.
+         * Предложить хотя бы одно решение или сообщить, что его нет.
+         */
+        System.out.println("Задано уравнение вида q + w = e, q, w, e >= 0\nНекоторые цифры могут быть заменены" +
+                "знаком вопроса, например, 2? + ?5 = 69\nВведите своё уравнение в одну строку, без пробелов.");
+
+    }
 }
