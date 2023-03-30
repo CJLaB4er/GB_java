@@ -1,9 +1,8 @@
-import java.text.DecimalFormat;
 import java.util.Scanner;
 import static java.lang.Math.sqrt;
 
 /*
-Во всех задачах отсутствует проверка на корректный ввод.
+Для того, что бы не перегружать код, во всех задачах отсутствует проверка на корректный ввод.
  */
 
 public class HWSem1 {
@@ -36,6 +35,32 @@ public class HWSem1 {
             }
         }
         return true;
+    }
+
+    static double calculate(String chr, double fNumb, double sNumb){
+        double result = 0;
+        if (chr.equals("+")){
+            result = fNumb + sNumb;
+        }
+        else if (chr.equals("-")) {
+            result = fNumb - sNumb;
+        }
+        else if (chr.equals("*")) {
+            result = fNumb * sNumb;
+        }
+        else if (chr.equals("/")) {
+            result = fNumb / sNumb;
+        }
+        else if (chr.equals("^")) {
+            result = Math.pow(fNumb, sNumb);
+        }
+//        else if (chr.equals("sqrt2")) {
+//            result = Math.sqrt(fNumb);
+//        }
+//        else if (chr.equals("sqrt3")) {
+//            result = Math.cbrt(fNumb);
+//        }
+        return result;
     }
 
     static void task1() {
@@ -84,35 +109,16 @@ public class HWSem1 {
         /*
         Реализовать простой калькулятор (введите первое число, введите второе число, введите требуемую операцию, ответ)
          */
-        String res = "";
-        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        System.out.println("Данный калькулятор поддерживает только простые операции: [+, -, *, /, ^]\nТак же в нём отсутствует проверка на корректность ввода");
         System.out.println("Введите первое число: ");
         double fNumb = inputDouble();
         System.out.println("Введите второе число: ");
         double sNumb = inputDouble();
-        System.out.println("Введите знак требуемой операции: ");
+        System.out.println("Введите знак требуемой операции: [+, -, *, /, ^] ");
         Scanner scanner = new Scanner(System.in);
-        String ch = scanner.next();
-        StringBuilder stringBuilder = new StringBuilder();
-        if (ch.equals("+")){
-            stringBuilder.append("Результат сложения чисел ").append(fNumb).append(" и ").append(sNumb).append(" равен ").append(fNumb + sNumb);
-            System.out.println(stringBuilder);
-        } else if (ch.equals("-")) {
-            stringBuilder.append("Результат вычитания чисел ").append(fNumb).append(" и ").append(sNumb).append(" равен ").append(fNumb - sNumb);
-            System.out.println(stringBuilder);
-        } else if (ch.equals("*")) {
-            stringBuilder.append("Результат умножения чисел ").append(fNumb).append(" и ").append(sNumb).append(" равен ").append(fNumb * sNumb);
-            System.out.println(stringBuilder);
-        } else if (ch.equals("/")) {
-            stringBuilder.append("Результат деления чисел ").append(fNumb).append(" и ").append(sNumb).append(" равен ").append(fNumb / sNumb);
-            System.out.println(stringBuilder);
-        } else if (ch.equals("^")) {
-            stringBuilder.append("Результат возведения ").append(fNumb).append(" в степень ").append(sNumb).append(" равен ").append(Math.pow(fNumb, sNumb));
-            System.out.println(stringBuilder);
-        } else if (ch.equals("sqrt")) {
-            res = decimalFormat.format(Math.pow(fNumb, 1/ sNumb));
-            stringBuilder.append("Результат корня ").append(sNumb).append(" степени числа  ").append(fNumb).append(" равен ").append(res);
-            System.out.println(stringBuilder);
+        String chr = scanner.next();
+        StringBuilder stringBuilder = new StringBuilder(fNumb + chr + sNumb+ " = ").append(calculate(chr, fNumb, sNumb));
+        System.out.println(stringBuilder);
         }
-    }
+
 }
