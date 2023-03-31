@@ -70,6 +70,13 @@ public class HWSem1 {
         return result;
     }
 
+    static boolean checkEqul(int q, int w, int e){
+        if (q + w == e) {
+            return true;
+        }
+        return false;
+    }
+
     static void task1() {
         /*
         Вычислить n-ое треугольного число (сумма чисел от 1 до n)
@@ -137,7 +144,7 @@ public class HWSem1 {
         System.out.println("Задано уравнение вида q + w = e, q, w, e >= 0\nНекоторые цифры могут быть заменены" +
                 "знаком вопроса, например, 2? + ?5 = 69\nВведите своё уравнение в одну строку, без пробелов.");
         String[] str = inputStr().split("\\s*(\\+|\\=)\\s*");
-        
+
 
 
 
