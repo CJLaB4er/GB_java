@@ -70,7 +70,11 @@ public class HWSem1 {
         return result;
     }
 
-    static boolean checkEqul(int q, int w, int e){
+    static boolean checkEqul(String str){
+        String[] strArr = str.split("\\s*(\\+|\\=)\\s*");
+        int q = Integer.parseInt(strArr[0]);
+        int w = Integer.parseInt(strArr[1]);
+        int e = Integer.parseInt(strArr[2]);
         if (q + w == e) {
             return true;
         }
@@ -142,11 +146,26 @@ public class HWSem1 {
          * Предложить хотя бы одно решение или сообщить, что его нет.
          */
         System.out.println("Задано уравнение вида q + w = e, q, w, e >= 0\nНекоторые цифры могут быть заменены" +
-                "знаком вопроса, например, 2? + ?5 = 69\nВведите своё уравнение в одну строку, без пробелов.");
-        String[] str = inputStr().split("\\s*(\\+|\\=)\\s*");
-
-
-
-
+                "знаком вопроса, например, 2? + ?5 = 69\nВведите своё уравнение в одну строку.");
+        int count = 0;
+        String str = inputStr();
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int q = 0; q < 10; q++){
+            for (int w = 0; w < 10; w++){
+                for (int e = 0; e < 10; e++ ){
+                    String tempStr = str.replaceFirst("\\?", Integer.toString(q));
+                    tempStr = tempStr.replaceFirst("\\?", Integer.toString(w));
+                    tempStr = tempStr.replaceFirst("\\?", Integer.toString(e));
+                    if (checkEqul(tempStr) && !stringBuilder.toString().contains(tempStr)){
+                        stringBuilder.append(tempStr);
+                        count++;
+                        System.out.println(count + ") " + tempStr);
+                    }
+                }
+            }
+        }
+        if (stringBuilder.toString().length() < 1){
+            System.out.println("Нет ни одного решения данного уравнения.");
+        }
     }
 }
