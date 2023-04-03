@@ -1,3 +1,7 @@
+
+import java.io.FileReader;
+import java.io.IOException;
+
 public class HWSem2 {
     public static void main(String[] args) {
         /*
@@ -19,5 +23,24 @@ public class HWSem2 {
         * Реализуйте алгоритм сортировки пузырьком числового массива, результат после каждой итерации запишите в лог-файл.
         * - по желанию
          */
+        reader();
+    }
+
+    static void reader() {
+        FileReader fileReader = null;
+        StringBuilder stringBuilder = new StringBuilder();
+        try {
+            fileReader = new FileReader("src/HWSem2.json");
+            int chr;
+            while ((chr = fileReader.read()) != -1) {
+                if (!"[]\s\r\n".contains(Character.toString(chr))) { // не считываем ненужные символы
+                    stringBuilder.append((char) chr); // строим строку из нужных нам символов
+                }
+            }
+            System.out.println(stringBuilder.toString());
+
+        } catch (IOException e) {
+            System.out.println("File not found");
+        }
     }
 }
