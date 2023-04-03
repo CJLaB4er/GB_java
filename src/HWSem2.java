@@ -37,10 +37,30 @@ public class HWSem2 {
                     stringBuilder.append((char) chr); // строим строку из нужных нам символов
                 }
             }
-            System.out.println(stringBuilder.toString());
+            String[] arrStr = stringBuilder.toString().split("\\},\\{"); // разбиваем строку на массив строк
+            for (String item : arrStr){
+                resultBuilder(item.replace("{","").replace("}", ""));
+            }
 
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             System.out.println("File not found");
         }
+    }
+
+    static void resultBuilder(String data){
+        String[] firstStr = data.split(",");
+        StringBuilder result = new StringBuilder();
+        for (String item : firstStr){
+            String[] tempStr = item.split(":");
+            if (tempStr[0].equals("\"фамилия\"")){
+                result.append("Студент ").append(tempStr[1].replace("\"", ""));
+            } else if (tempStr[0].equals("\"оценка\"")) {
+                result.append(" получил ").append(tempStr[1].replace("\"", ""));
+            } else if (tempStr[0].equals("\"предмет\"")) {
+                result.append(" по предмету ").append(tempStr[1].replace("\"", "")).append(".");
+            }
+        }
+        System.out.println(result.toString());
     }
 }
