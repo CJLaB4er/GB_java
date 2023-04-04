@@ -1,4 +1,3 @@
-
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -57,6 +56,7 @@ public class HWSem2 {
         }
         catch (IOException e) {
             System.out.println("File not found");
+            logger.info("Файл для чтения не обнаружен");
         }
     }
 
