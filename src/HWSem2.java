@@ -2,9 +2,10 @@
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.logging.*;
 
 public class HWSem2 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         /*
         Дана json строка
         { { "фамилия":"Иванов","оценка":"5","предмет":"Математика"},
@@ -25,10 +26,18 @@ public class HWSem2 {
         * - по желанию
          */
 
-        reader();
+        Logger logger = Logger.getLogger(HWSem2.class.getName());
+        FileHandler fh = new FileHandler("src\\log.txt");
+        logger.setUseParentHandlers(false); // отключаем вывод информации в консоль.
+        logger.addHandler(fh);
+        SimpleFormatter sForm = new SimpleFormatter();
+        fh.setFormatter(sForm);
+        logger.info("Программа запущена");
+        reader(logger);
+        logger.info("Работа программы завершена корректно\n");
     }
 
-    static void reader() {
+    static void reader(Logger logger) {
         FileReader fileReader = null;
         StringBuilder stringBuilder = new StringBuilder();
         try {
@@ -39,9 +48,10 @@ public class HWSem2 {
                     stringBuilder.append((char) chr); // строим строку из нужных нам символов
                 }
             }
+            logger.info("Считан файл и создана объект StringBuilder");
             String[] arrStr = stringBuilder.toString().split("\\},\\{"); // разбиваем строку на массив строк
             for (String item : arrStr){
-                resultBuilder(item.replace("{","").replace("}", ""));
+                resultBuilder(item.replace("{","").replace("}", ""), logger);
             }
 
         }
@@ -50,7 +60,7 @@ public class HWSem2 {
         }
     }
 
-    static void resultBuilder(String data){
+    static void resultBuilder(String data, Logger logger){
         String[] firstStr = data.split(",");
         StringBuilder result = new StringBuilder();
         for (String item : firstStr){
@@ -63,16 +73,18 @@ public class HWSem2 {
                 result.append(" по предмету ").append(tempStr[1].replace("\"", "")).append(".");
             }
         }
-        writeToFile(result.toString());
+        logger.info("Строка ответа сформирована и передана для записи в файл.");
+        writeToFile(result.toString(), logger);
     }
 
-    static void writeToFile(String str){
+    static void writeToFile(String str, Logger logger){
         try (FileWriter write = new FileWriter("src\\result.txt", true)){
             write.append(str).append("\n");
-            System.out.println("строка \"" + str + "\" добавлена в src\\result.txt");
+            logger.info("Стрка ответа записана в файл \"scr\\result.txt\"");
         }
         catch (Exception e){
             System.out.println("Операция записи в файл не выполнена");
+            logger.info("Операция записи в файл не выполнена");
         }
     }
 }
