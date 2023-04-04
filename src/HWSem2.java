@@ -1,5 +1,6 @@
 
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class HWSem2 {
@@ -23,6 +24,7 @@ public class HWSem2 {
         * Реализуйте алгоритм сортировки пузырьком числового массива, результат после каждой итерации запишите в лог-файл.
         * - по желанию
          */
+
         reader();
     }
 
@@ -61,6 +63,16 @@ public class HWSem2 {
                 result.append(" по предмету ").append(tempStr[1].replace("\"", "")).append(".");
             }
         }
-        System.out.println(result.toString());
+        writeToFile(result.toString());
+    }
+
+    static void writeToFile(String str){
+        try (FileWriter write = new FileWriter("src\\result.txt", true)){
+            write.append(str).append("\n");
+            System.out.println("строка \"" + str + "\" добавлена в src\\result.txt");
+        }
+        catch (Exception e){
+            System.out.println("Операция записи в файл не выполнена");
+        }
     }
 }
