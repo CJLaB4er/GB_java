@@ -13,15 +13,38 @@ public class HWSem4 {
 
         Найдите сумму всех элементов LinkedList, сохраняя все элементы в списке. Используйте итератор
          */
-        System.out.println(createLinkLst(10));
+
+        MyLinkedList list = new MyLinkedList();
+
+        list.pullLinkLstRnd(10);
+
+        System.out.println("Сгенерированный список:");
+        list.printLinkLst();
+
+        System.out.println("Перевёрнутый список:");
+        System.out.println(list.reverse());
+
+        System.out.println("Изначальный список остался прежним:");
+        list.printLinkLst();
+
+        System.out.println("Добавляем элемент в конец очереди:");
+        list.enqueue();
+
+        System.out.println("Возвращаем первый элемент из очереди и удаляет его:");
+        System.out.println(list.dequeue());
+
+        System.out.println("Теперь список выглядит так:");
+        list.printLinkLst();
+
+        System.out.println("Возвращаем первый элемент списка не удаляя его:");
+        System.out.println(list.first());
+
+        System.out.println("Изначальный список остался прежним:");
+        list.printLinkLst();
+
+        System.out.println("Сумма всех элементов списка равна = " + list.sum());
+
     }
 
-    static LinkedList createLinkLst(int numb) {
-        LinkedList<Integer> list = new LinkedList<>();
-        Random rnd = new Random();
-        for (int i = 0; i < numb; i++) {
-            list.add(i, rnd.nextInt(1, 101));
-        }
-        return list;
-    }
 }
+
