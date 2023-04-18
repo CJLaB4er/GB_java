@@ -1,3 +1,12 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.logging.Logger;
+
 public class HWSem6 {
     public static void main(String[] args) {
         /*
@@ -14,5 +23,41 @@ public class HWSem6 {
         фильтрации можно также в Map.
         Отфильтровать ноутбуки из первоначального множества и вывести проходящие по условиям.
          */
+
+        Notebook notebook = new Notebook("Extensa", "Acer", "15.6", "4048", "128",
+                "Windows", "18500", "домашний");
+
+        writeToFile(notebook.getInfo());
+
+        createHashSetNotebooks();
+
+        Set<Notebook> notebookSet = new HashSet<>();
+
+
+    }
+
+    static void writeToFile(String str) {
+        try (FileWriter write = new FileWriter("src\\notebooksDB.txt", true)) {
+            write.append(str).append("\n");
+        } catch (Exception e) {
+            System.out.println("Что-то пошло не так! Необходимо вроверить код.");
+        }
+    }
+
+    static void createHashSetNotebooks() {
+        File file = new File("src/notebooksDB.txt");
+        try(BufferedReader br = new BufferedReader(new FileReader(file))){
+            String line;
+            while ((line = br.readLine()) != null){
+
+            }
+        }
+        catch (Exception e){
+            System.out.println("Что-то пошло не так! Необходимо вроверить код.");
+        }
+
     }
 }
+
+
+
