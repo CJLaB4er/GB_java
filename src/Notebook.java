@@ -1,8 +1,10 @@
 public class Notebook {
 
-    private String model, brand, size, ram, rom, system, price, type;
+    private String model, brand, system, type;
+    private int ram, rom, price;
+    private  float size;
 
-    public Notebook(String model, String brand, String size, String ram, String rom, String system, String price, String type) {
+    public Notebook(String model, String brand, float size, int ram, int rom, String system, int price, String type) {
         this.model = model;
         this.brand = brand;
         this.size = size;
@@ -15,8 +17,9 @@ public class Notebook {
 
     @Override
     public String toString() {
-        return model + "{" +
+        return "{" +
                 "брэнд='" + brand + '\'' +
+                ", модель='" + model + '\'' +
                 ", размер='" + size + '\'' +
                 ", оперативная память='" + ram + '\'' +
                 ", постоянная память='" + rom + '\'' +
@@ -26,39 +29,41 @@ public class Notebook {
                 '}';
     }
 
-    public String getBrand() {
-        return brand;
-    }
-
     public String getModel() {
         return model;
     }
 
-    public String getSize() {
-        return size;
-    }
-
-    public String getRam() {
-        return ram;
-    }
-
-    public String getRom() {
-        return rom;
+    public String getBrand() {
+        return brand;
     }
 
     public String getSystem() {
         return system;
     }
 
-    public String getPrice() {
-        return price;
-    }
-
     public String getType() {
         return type;
     }
 
+    public int getRam() {
+        return ram;
+    }
+
+    public int getRom() {
+        return rom;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public float getSize() {
+        return size;
+    }
+
     public String getInfo(){
-        return model + ", " + brand + ", " + size + ", " + ram + ", " + rom + ", " + system + ", " + price + ", " + type;
+        return "Модель: "+ model + ", Бренд: " + brand + ", Размер экрана: " + size + ", Размер оперативной памяти: "
+                + ram + ", Размер жесткого диска: " + rom + ", Установленная операционная система: "
+                + system + ", Цена: " + price + ", Тип ноутбука: " + type;
     }
 }
